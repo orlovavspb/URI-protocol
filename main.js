@@ -1,22 +1,19 @@
 var params = document.location.href;
 var protocol = "oo-office";
 var onSuccess = function() {
-    console.log('Success');
+    console.log("Success");
 }
 var onError = function() {
-    console.log('Error');
+    console.log("Error");
 }
-var timeoutMs1 = 2000;
-var uri = protocol + ':' + params;
-var timeoutMs = timeoutMs1 || 1000;
-
-var isBrowserSupported = false;
-var isCatchEvent = false;
+var timeoutMs1 = 1000;                     //для тестового сервера
+var uri = protocol + ":" + params;
+var timeoutMs = timeoutMs1 || 1000;        //для боевого сервера
 
 function openApp(protocol, params, onSuccess, onError, timeoutMs) {
-    console.log('URL page: ' + params); //разделил на три вывода в консоль, чтобы скриншот был красивый
-    console.log('add: ' + protocol);
-    console.log('URI: ' + uri);
+    console.log("URL page: " + params); //разделил на три вывода в консоль, чтобы скриншот был красивый
+    console.log("add: " + protocol);
+    console.log("URI: " + uri);
     function createIframe(target, uri) {
         var iframe = target.createElement("iframe");
         iframe.src = uri;
@@ -25,17 +22,10 @@ function openApp(protocol, params, onSuccess, onError, timeoutMs) {
         target.body.appendChild(iframe);
         return iframe;
     }
-    function unsupportedCb() {
-        console.log("Browser is not supported");
-    }
 
-    var isBrowserSupported = false;
-    var isCatchEvent = false;
-
-    //chrome89 and firefox87 and ms_edge89 on win10 - WORK
+    //chrome89 and firefox87 and ms_edge89 on win10 and safari 7.0.6 on OS X 10.9.5  - WORK
     //https://github.com/ONLYOFFICE/sdkjs/blob/fix/openApp/common/utils/openApp.js
-    if (true) {                                                                     //без проверки браузера
-        isBrowserSupported = true;
+    if (true) {                                                                     //без проверки браузера, но решил проверку не обирать
         var iframe = document.querySelector("#hiddenIframe");
         if (!iframe) {
             iframe = createIframe(document, "about:blank");
