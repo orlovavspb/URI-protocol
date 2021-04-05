@@ -13,8 +13,7 @@ var timeoutMs = timeoutMs1 || 1000;
 var isBrowserSupported = false;
 var isCatchEvent = false;
 
-function openApp(protocol, params, onSuccess, onError, timeoutMs)
-{
+function openApp(protocol, params, onSuccess, onError, timeoutMs) {
     console.log('URL page: ' + params); //разделил на три вывода в консоль, чтобы скриншот был красивый
     console.log('add: ' + protocol);
     console.log('URI: ' + uri);
@@ -33,7 +32,7 @@ function openApp(protocol, params, onSuccess, onError, timeoutMs)
     var isBrowserSupported = false;
     var isCatchEvent = false;
 
-    //chrome89 and firefox87 and edge89 on win10 - WORK
+    //chrome89 and firefox87 and ms_edge89 on win10 - WORK
     //https://github.com/ONLYOFFICE/sdkjs/blob/fix/openApp/common/utils/openApp.js
     if (true) {                                                                     //без проверки браузера
         isBrowserSupported = true;
@@ -42,7 +41,7 @@ function openApp(protocol, params, onSuccess, onError, timeoutMs)
             iframe = createIframe(document, "about:blank");
         }
         try {
-            iframe.contentWindow.location.href = uri;
+            iframe.contentWindow.location.href = uri;                               //загружаем в iframe новый URI вместо URL ссылки
             setTimeout(function () {
                 try {
                     if (iframe.contentWindow.location.protocol === "about:") {
